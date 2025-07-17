@@ -170,6 +170,35 @@ x-api-key: secret123
 
 ---
 
+### Advanced Features
+
+#### Filtering by Category
+- **GET /api/products?category=electronics**
+  - Returns products in the specified category.
+
+#### Pagination
+- **GET /api/products?page=1&limit=2**
+  - Returns paginated products. `page` is the page number, `limit` is the number of products per page.
+
+#### Search by Name
+- **GET /api/products?search=laptop**
+  - Returns products whose name includes the search term (case-insensitive).
+
+#### Product Statistics
+- **GET /api/products/stats**
+  - Returns a count of products by category.
+  - **Response:**
+    ```json
+    {
+      "countByCategory": {
+        "electronics": 2,
+        "kitchen": 1
+      }
+    }
+    ```
+
+---
+
 ## 🛡️ Middleware
 
 - **Logger:** Logs request method, URL, and timestamp.
@@ -219,6 +248,30 @@ curl -X DELETE http://localhost:3000/api/products/1 \
 
 ---
 
+## 🧪 Example Advanced Requests
+
+**Filter by category:**
+```bash
+curl http://localhost:3000/api/products?category=electronics
+```
+
+**Paginate products:**
+```bash
+curl http://localhost:3000/api/products?page=1&limit=2
+```
+
+**Search by name:**
+```bash
+curl http://localhost:3000/api/products?search=laptop
+```
+
+**Get product statistics:**
+```bash
+curl http://localhost:3000/api/products/stats
+```
+
+---
+
 ## 🗂️ Project Structure
 
 - `server.js` – Main Express server and API logic
@@ -228,7 +281,15 @@ curl -X DELETE http://localhost:3000/api/products/1 \
 
 ## 🌱 Environment Variables
 
-See [.env.example](.env.example) for required environment variables.
+Create a `.env` file based on `.env.example`:
+
+```
+PORT=3000
+API_KEY=secret123
+```
+
+- `PORT`: The port your server will run on (default: 3000)
+- `API_KEY`: The API key required for modifying routes
 
 ---
 
