@@ -272,6 +272,142 @@ curl http://localhost:3000/api/products/stats
 
 ---
 
+## 🧪 Testing the API with Postman
+
+You can use [Postman](https://www.postman.com/) to test all CRUD operations of this API. Make sure your server is running on `http://localhost:3000`.
+
+### 1. Get All Products (Read)
+- **Method:** GET
+- **URL:** `http://localhost:3000/api/products`
+- **Output:** 
+```json
+{
+    "total": 3,
+    "page": 1,
+    "limit": 3,
+    "products": [
+        {
+            "id": "1",
+            "name": "Laptop",
+            "description": "High-performance laptop with 16GB RAM",
+            "price": 1200,
+            "category": "electronics",
+            "inStock": true
+        },
+        {
+            "id": "2",
+            "name": "Smartphone",
+            "description": "Latest model with 128GB storage",
+            "price": 800,
+            "category": "electronics",
+            "inStock": true
+        },
+        {
+            "id": "3",
+            "name": "Coffee Maker",
+            "description": "Programmable coffee maker with timer",
+            "price": 50,
+            "category": "kitchen",
+            "inStock": false
+        }
+    ]
+}
+```
+
+### 2. Get a Product by ID (Read)
+- **Method:** GET
+- **URL:** `http://localhost:3000/api/products/1`
+- **Output:** 
+```json
+{
+    "id": "1",
+    "name": "Laptop",
+    "description": "High-performance laptop with 16GB RAM",
+    "price": 1200,
+    "category": "electronics",
+    "inStock": true
+}
+```
+
+### 3. Create a Product (Create)
+- **Method:** POST
+- **URL:** `http://localhost:3000/api/products`
+- **Headers:**
+  - `Content-Type: application/json`
+  - `x-api-key: secret123`
+- **Body (raw JSON):**
+ ```json
+{
+    "name": "Bluetooth Speaker",
+    "description": "Portable with deep bass",
+    "price": 150,
+    "category": "electronics",
+    "inStock": true
+}
+```
+
+- **Output:**
+```json
+{
+    "id": "81b5d24b-325b-4d14-8196-ad95e094000f",
+    "name": "Bluetooth Speaker",
+    "description": "Portable with deep bass",
+    "price": 150,
+    "category": "electronics",
+    "inStock": true
+}
+```
+
+### 4. Update a Product (Update)
+- **Method:** PUT
+- **URL:** `http://localhost:3000/api/products/3` 
+- **Headers:**
+  - `Content-Type: application/json`
+  - `x-api-key: secret123`
+- **Body (raw JSON):**
+```json
+  {
+    "price": 50,
+    "inStock": true
+}
+  ```
+- **Output:** 
+```json
+{
+    "id": "3",
+    "name": "Coffee Maker",
+    "description": "Programmable coffee maker with timer",
+    "price": 50,
+    "category": "kitchen",
+    "inStock": true
+}
+```
+
+### 5. Delete a Product (Delete)
+- **Method:** DELETE
+- **URL:** `http://localhost:3000/api/products/1`
+- **Headers:**
+  - `x-api-key: secret123`
+- **Output:**
+```json
+{
+    "id": "1",
+    "name": "Laptop",
+    "description": "High-performance laptop with 16GB RAM",
+    "price": 1200,
+    "category": "electronics",
+    "inStock": true
+}
+```
+
+### Tips for Using Postman
+- Set the request type (GET, POST, PUT, DELETE) using the dropdown next to the URL field.
+- For POST and PUT, select the "Body" tab, choose "raw", and set the type to "JSON".
+- Add headers in the "Headers" tab (especially `x-api-key` for protected routes).
+- You can save your requests in a Postman collection for easy reuse.
+
+---
+
 ## 🗂️ Project Structure
 
 - `server.js` – Main Express server and API logic
